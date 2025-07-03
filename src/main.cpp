@@ -18,6 +18,7 @@
 #include "AppNetwork/Module.hpp"
 #include "AppTime/Module.hpp"
 #include "AppHTTPD/Module.hpp"
+#include "WiFiClock/Module.hpp"
 
 namespace zw::esp8266::app {
 namespace {
@@ -74,6 +75,7 @@ void _reboot_event(int32_t event_id, void* event_data, void* handler_arg) {
 
   // Reverse order of initialization
   ESP_LOGI(TAG, "Finalizing components...");
+  wificlock::finit();
   httpd::finit();
   network::finit();
   time::finit();
@@ -110,12 +112,16 @@ esp_err_t main(void) {
   ESP_RETURN_ON_ERROR(eventmgr::init());
 
   // Order dependent sub-system initialization
+  ESP_RETURN_ON_ERROR(wificlock::config_init());
+
   ESP_RETURN_ON_ERROR(config::init());
 #ifdef ZW_SYSTIME_AVAILABLE
   ESP_RETURN_ON_ERROR(time::init());
 #endif
   ESP_RETURN_ON_ERROR(network::init());
   ESP_RETURN_ON_ERROR(httpd::init());
+
+  ESP_RETURN_ON_ERROR(wificlock::init());
 
   ESP_LOGD(TAG, "** Heap: %d; Stack: %d", esp_get_free_heap_size(),
            uxTaskGetStackHighWaterMark(NULL));

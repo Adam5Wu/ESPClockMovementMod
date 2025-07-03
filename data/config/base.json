@@ -4,7 +4,7 @@
     "ap": {
       "ssid_prefix": null,
       "password": null,
-      "net_provision_only": false
+      "net_provision_only": true
     },
     "station": {
       "ssid": null,
@@ -12,12 +12,12 @@
     }
   },
   "dev_mode": {
-    "web_dav": true
+    "web_dav": false
   },
   "time": {
     "baseline": "2025-05-01 10:00:00",
     "timezone": null,
-    "ntp_server": null
+    "ntp_server": "time.google.com"
   },
   "http_server": {
     "root_dir": "/system/http",

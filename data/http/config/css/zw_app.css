@@ -1,0 +1,50 @@
+form#config-form {
+  max-width: 30em;
+  min-width: 20em;
+  margin: 0 auto;
+}
+
+form#config-form div.controls {
+  text-align: center;
+  margin: 1em;
+}
+
+form#config-form div.controls input {
+  font-size: 12pt;
+  font-weight: bold;
+  width: 8em;
+  padding: 0.5em;
+  margin: 0 0.5em;
+}
+
+#redir-ntp-tz {
+  cursor: pointer;
+}
+
+#redir-ntp-tz:hover {
+  text-decoration: underline;
+}
+
+fieldset>div.cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: progress;
+  display: none;
+}
+
+fieldset.syncing>div.cover {
+  display: block;
+  z-index: 100;
+}
+
+fieldset.syncing>legend::after {
+  margin: 0 0.2em;
+  font-family: "zw-icons";
+  content: "\23F3";
+  font-size: larger;
+  line-height: 0;
+  font-weight: normal;
+}
